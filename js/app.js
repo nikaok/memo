@@ -5,6 +5,19 @@
 let deck = document.querySelector('.deck');
 let allCards = document.querySelectorAll('.card');
 
+deck.addEventListener('click', flipCard);
+
+function flipCard(event) {
+  event.target.classList.add('open', 'show');
+}
+
+// allCards.forEach(function(card){
+//   card.addEventListener("click", function(e){
+//     card.classList.add("open", "show");
+//   });
+// });
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -38,25 +51,3 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-let openCards = [];
-
-deck.addEventListener('click', displayCard);
-
-function displayCard(event) {
-  if(openCards.length < 2) {
-    event.target.classList.add('open', 'show');
-    openCards.push(event.target);
-
-    if(openCards.length == 2) {
-      lockMatchingCards();
-    }
-  }
-}
-
-function lockMatchingCards() {
-  if(openCards[0].dataset.card === openCards[1].dataset.card) {
-    openCards[0].classList.add('match');
-    openCards[1].classList.add('match');
-  }
-}
