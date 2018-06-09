@@ -2,6 +2,21 @@
  * Create a list that holds all of your cards
  */
 
+let deck = document.querySelector('.deck');
+let allCards = document.querySelectorAll('.card');
+
+deck.addEventListener('click', flipCard);
+
+function flipCard(event) {
+  event.target.classList.add('open', 'show');
+}
+
+// allCards.forEach(function(card){
+//   card.addEventListener("click", function(e){
+//     card.classList.add("open", "show");
+//   });
+// });
+
 
 /*
  * Display the cards on the page
