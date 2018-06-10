@@ -40,6 +40,8 @@ function shuffle(array) {
  */
 
 let openCards = [];
+let moves = document.querySelector('.moves');
+let numOfMoves = parseInt(moves.innerText);
 
 deck.addEventListener('click', displayCard);
 
@@ -55,13 +57,19 @@ function displayCard(event) {
       openCards = [];
     }
     else {
-      setTimeout(function(){   console.log("timeout a girdi");
+      setTimeout(function(){
         openCards[0].classList.remove('open', 'show');
         openCards[1].classList.remove('open', 'show');
         openCards = [];
       }
        ,1000);
     }
-
+    updateMoves();
   }
+}
+
+// Update the number of moves
+function updateMoves() {
+  numOfMoves++;
+  moves.innerText = numOfMoves;
 }
