@@ -1,0 +1,25 @@
+[33mcommit 5b49896a786994e70ea7d154d8eb0c3f918f91bf[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Nigar Okur <nigarr@gmail.com>
+Date:   Sat Jun 9 18:24:45 2018 -0400
+
+    Revert "feat: lock the cards in the open position"
+    
+    This reverts commit 9f2608ccf269302a9815250fe23fd3db7dace9f3.
+
+[33mcommit 9f2608ccf269302a9815250fe23fd3db7dace9f3[m
+Author: Nigar Okur <nigarr@gmail.com>
+Date:   Sat Jun 9 18:15:13 2018 -0400
+
+    feat: lock the cards in the open position
+
+[33mcommit 083acf4fcee6b6604b2f67d5f8608c3908c7d2fa[m
+Author: Nigar Okur <nigarr@gmail.com>
+Date:   Sat Jun 9 00:52:41 2018 -0400
+
+    feat: flip card
+
+[33mcommit afcd44e0c17d4c061e0acdfc2f1d1c7a2c201fc1[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Nigar Okur <nigarr@gmail.com>
+Date:   Sat Jun 2 01:07:13 2018 -0400
+
+    The original initial version
