@@ -1,9 +1,15 @@
 /*
  * Create a list that holds all of your cards
  */
-
 let deck = document.querySelector('.deck');
-let allCards = document.querySelectorAll('.card');
+const cards = ["fa-diamond", "fa-diamond",
+              "fa-paper-plane-o", "fa-paper-plane-o",
+              "fa-anchor", "fa-anchor",
+              "fa-bolt", "fa-bolt",
+              "fa-cube", "fa-cube",
+              "fa-leaf", "fa-leaf",
+              "fa-bicycle", "fa-bicycle",
+              "fa-bomb", "fa-bomb"];
 
 /*
  * Display the cards on the page
@@ -11,6 +17,16 @@ let allCards = document.querySelectorAll('.card');
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+ displayCards();
+
+
+function displayCards(){
+    shuffledCards = shuffle(cards);
+    shuffledCards.forEach(function(card){
+        deck.innerHTML += `<li class="card" data-card= ${card}><i class="fa ${card}"></i></li>`;
+    });
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -26,7 +42,6 @@ function shuffle(array) {
 
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -44,9 +59,9 @@ let moves = document.querySelector('.moves');
 let numOfMoves = parseInt(moves.innerText);    // number of moves made by user
 let counter = 0;   // to track the number of matched items
 
-deck.addEventListener('click', displayCard);
+deck.addEventListener('click', displayCardDENEME);
 
-function displayCard(event) {
+function displayCardDENEME(event) {
   if(openCards.length < 2) {
     event.target.classList.add('open', 'show');
     openCards.push(event.target);
