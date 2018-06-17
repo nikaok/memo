@@ -205,4 +205,5 @@ h1 {
     margin: 20px 0;
     border: solid #02ccbb 4px;
     text-decoration: none;
+    cursor: pointer;
 }

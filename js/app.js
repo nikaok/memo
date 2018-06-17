@@ -18,9 +18,19 @@ const cards = ["fa-diamond", "fa-diamond",
  *   - add each card's HTML to the page
  */
 
- displayCards();
+displayCards();
 
+const playAgainButton = document.getElementById('playAgainButton');
 
+playAgainButton.addEventListener('click', playNewGame);
+
+function playNewGame(){
+   deck.innerHTML = "";
+   modal.style.display = 'none';
+   displayCards();
+}
+
+// Display the shuffled cards on the screen
 function displayCards(){
     shuffledCards = shuffle(cards);
     shuffledCards.forEach(function(card){
