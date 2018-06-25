@@ -84,7 +84,7 @@ function displayCard(event) {
       counter++;
 
       // show the congratulations message to the user
-      if(counter === 2) {
+      if(counter === 3) {
           displayFinalScore(getNumOfMoves());
       }
     }
@@ -95,12 +95,13 @@ function displayCard(event) {
         openCards[1].classList.add('flip-vertical-right');
       }
        ,1000);
+
       setTimeout(function(){
-        openCards[0].classList.remove('open', 'show');
-        openCards[1].classList.remove('open', 'show');
+        openCards[0].classList.remove('open', 'show', 'flip-vertical-right');
+        openCards[1].classList.remove('open', 'show', 'flip-vertical-right');
         openCards = [];
       }
-       ,1100);
+       ,1300);
     }
     updateMoves();
   }
