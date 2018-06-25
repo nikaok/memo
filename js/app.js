@@ -18,7 +18,7 @@ const cards = ["fa-diamond", "fa-diamond",
  *   - add each card's HTML to the page
  */
 
-displayCards();
+generateCards();
 
 const playAgainButton = document.getElementById('playAgainButton');
 
@@ -27,11 +27,11 @@ playAgainButton.addEventListener('click', playNewGame);
 function playNewGame(){
    deck.innerHTML = "";
    modal.style.display = 'none';
-   displayCards();
+   generateCards();
 }
 
 // Display the shuffled cards on the screen
-function displayCards(){
+function generateCards(){
     shuffledCards = shuffle(cards);
     shuffledCards.forEach(function(card){
         deck.innerHTML += `<li class="card" data-card= ${card}><i class="fa ${card}"></i></li>`;
@@ -69,32 +69,38 @@ let moves = document.querySelector('.moves');
 let numOfMoves = parseInt(moves.innerText);    // number of moves made by user
 let counter = 0;   // to track the number of matched items
 
-deck.addEventListener('click', displayCardDENEME);
+deck.addEventListener('click', displayCard);
 
-function displayCardDENEME(event) {
+function displayCard(event) {
   if(openCards.length < 2) {
     event.target.classList.add('open', 'show');
     openCards.push(event.target);
   }
   if (openCards.length == 2) {
     if(openCards[0].dataset.card === openCards[1].dataset.card) {
-      openCards[0].classList.add('match');
-      openCards[1].classList.add('match');
+      openCards[0].classList.add('match', 'rotate-center');
+      openCards[1].classList.add('match', 'rotate-center');
       openCards = [];
       counter++;
 
       // show the congratulations message to the user
-      if(counter === 1) {
+      if(counter === 2) {
           displayFinalScore(getNumOfMoves());
       }
     }
     else {
+
+      setTimeout(function(){
+        openCards[0].classList.add('flip-vertical-right');
+        openCards[1].classList.add('flip-vertical-right');
+      }
+       ,1000);
       setTimeout(function(){
         openCards[0].classList.remove('open', 'show');
         openCards[1].classList.remove('open', 'show');
         openCards = [];
       }
-       ,1000);
+       ,1100);
     }
     updateMoves();
   }
