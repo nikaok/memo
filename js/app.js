@@ -1,6 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
+// Create a list that holds all of the cards
 let deck = document.querySelector('.deck');
 const cards = ["fa-diamond", "fa-diamond",
               "fa-paper-plane-o", "fa-paper-plane-o",
@@ -11,6 +9,20 @@ const cards = ["fa-diamond", "fa-diamond",
               "fa-bicycle", "fa-bicycle",
               "fa-bomb", "fa-bomb"];
 
+const playAgainButton = document.getElementById('playAgainButton');
+let openCards = [];
+let moves = document.querySelector('.moves');
+let numOfMoves = parseInt(moves.innerText);    // number of moves made by user
+let counter = 0;   // to track the number of matched items
+
+// stars
+const firstStar = document.getElementById('firstStar');
+const secondStar = document.getElementById('secondStar');
+const thirdStar = document.getElementById('thirdStar');
+const fourthStar = document.getElementById('fourthStar');
+const fifthStar = document.getElementById('fifthStar');
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -19,8 +31,6 @@ const cards = ["fa-diamond", "fa-diamond",
  */
 
 generateCards();
-
-const playAgainButton = document.getElementById('playAgainButton');
 
 playAgainButton.addEventListener('click', playNewGame);
 
@@ -64,11 +74,6 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-let openCards = [];
-let moves = document.querySelector('.moves');
-let numOfMoves = parseInt(moves.innerText);    // number of moves made by user
-let counter = 0;   // to track the number of matched items
-
 deck.addEventListener('click', displayCard);
 
 function displayCard(event) {
@@ -84,7 +89,7 @@ function displayCard(event) {
       counter++;
 
       // show the congratulations message to the user
-      if(counter === 3) {
+      if(counter === 1) {
           displayFinalScore(getNumOfMoves());
       }
     }
@@ -104,6 +109,7 @@ function displayCard(event) {
        ,1300);
     }
     updateMoves();
+    updateStarRating();
   }
 }
 
@@ -116,6 +122,22 @@ function updateMoves() {
 
 function getNumOfMoves() {
   return updateMoves();
+}
+
+// Update how many stars the user have
+function updateStarRating() {
+    if (numOfMoves > 16 && numOfMoves <=20) {
+        fifthStar.classList.remove('checked');
+    }
+    else if (numOfMoves > 20 && numOfMoves <= 24) {
+        fourthStar.classList.remove('checked');
+    }
+    else if (numOfMoves > 24 && numOfMoves <= 28) {
+        thirdStar.classList.remove('checked');
+    }
+    else if (numOfMoves > 28 && numOfMoves <= 32) {
+        secondStar.classList.remove('checked');
+    }
 }
 
 function displayFinalScore() {

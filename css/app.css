@@ -108,6 +108,10 @@ h1 {
     cursor: pointer;
 }
 
+.checked {
+    color: orange;
+}
+
 /*
 *  Modal
 */
