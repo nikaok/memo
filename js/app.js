@@ -14,6 +14,7 @@ let openCards = [];
 let moves = document.querySelector('.moves');
 let numOfMoves = parseInt(moves.innerText);    // number of moves made by user
 let counter = 0;   // to track the number of matched items
+const restartButton = document.querySelector('.restart');
 
 // stars
 const firstStar = document.getElementById('firstStar');
@@ -32,7 +33,11 @@ const fifthStar = document.getElementById('fifthStar');
 
 generateCards();
 
+// restart the game when user pushes "Play Again" button on the modal
 playAgainButton.addEventListener('click', playNewGame);
+
+// Restart the game when the user pushes the refresh button on the screen
+restartButton.addEventListener('click', playNewGame);
 
 function playNewGame(){
    deck.innerHTML = "";
@@ -139,6 +144,7 @@ function updateStarRating() {
         secondStar.classList.remove('checked');
     }
 }
+
 
 function displayFinalScore() {
     modal.style.display = "block";
