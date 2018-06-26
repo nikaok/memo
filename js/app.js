@@ -144,7 +144,7 @@ function displayFinalScore() {
     modal.style.display = "block";
     document.getElementById('list-moves').innerText = numOfMoves;
     document.getElementById('list-time').innerText = "simdilik TIME yok";
-    document.getElementById('list-star').innerText = "simdilik STAR yok";
+    document.getElementById('list-star').innerHTML = document.querySelector('.stars').outerHTML;
 }
 
 
