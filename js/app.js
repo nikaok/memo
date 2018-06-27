@@ -41,6 +41,8 @@ restartButton.addEventListener('click', playNewGame);
 
 function playNewGame(){
    deck.innerHTML = "";
+   numOfMoves = 0;
+   moves.innerText = numOfMoves;
    modal.style.display = 'none';
    generateCards();
 }
