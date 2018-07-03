@@ -9,12 +9,12 @@ const cards = ["fa-diamond", "fa-diamond",
               "fa-bicycle", "fa-bicycle",
               "fa-bomb", "fa-bomb"];
 
-const playAgainButton = document.getElementById('playAgainButton');
+const playAgainButton = document.querySelector('.playAgainButton');
+const timeUpPlayAgainButton = document.querySelectorAll('.playAgainButton')[1];
 let openCards = [];
 let moves = document.querySelector('.moves');
 let numOfMoves = parseInt(moves.innerText);    // number of moves made by user
 let counter = 0;   // to track the number of matched items
-const restartButton = document.querySelector('.restart');
 
 // stars
 const firstStar = document.getElementById('firstStar');
@@ -23,6 +23,12 @@ const thirdStar = document.getElementById('thirdStar');
 const fourthStar = document.getElementById('fourthStar');
 const fifthStar = document.getElementById('fifthStar');
 
+// timer variables
+const minutes = document.getElementById('minutes');
+const seconds = document.getElementById('seconds');
+const tens = document.getElementById('tens');
+
+const restartButton = document.querySelector('.restart');
 
 /*
  * Display the cards on the page
@@ -32,6 +38,7 @@ const fifthStar = document.getElementById('fifthStar');
  */
 
 generateCards();
+deck.addEventListener('click', startTimer, {once: true});
 
 // restart the game when user pushes "Play Again" button on the modal
 playAgainButton.addEventListener('click', playNewGame);
@@ -160,9 +167,6 @@ function displayFinalScore() {
 // Get the modal
 var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
@@ -177,3 +181,67 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
+/************ TIMER ******************/
+
+/* Initiates the timer*/
+function startTimer() {
+  let counter = 359800;
+  let tensVal = 0;
+  let secondsVal = 0;
+  let minutesVal = 0;
+  /*
+  IntervalReturnId is the ID returned by setInterval method.
+  ID will be used as parameter to clearInterval method to stop the timer
+  */
+  let IntervalReturnId = setInterval(function() {
+    counter++;
+
+    tensVal = counter % 100;
+    secondsVal = parseInt(counter / 100);
+
+    if(secondsVal > 59) {
+      secondsVal = secondsVal % 60;
+    }
+    minutesVal = parseInt (counter / 6000);
+
+    if(minutesVal == 60 && secondsVal == 00 && tensVal == 00) {
+      tens.innerHTML = '00';
+      seconds.innerHTML = '00';
+      minutes.innerHTML = '00';
+      clearInterval(IntervalReturnId);
+      displayTimeUpModal();
+    }
+      tens.innerHTML = ('00' + tensVal).slice(-2);
+      seconds.innerHTML = ('00' + secondsVal).slice(-2);
+      minutes.innerHTML = ('00' + minutesVal).slice(-2);
+  }, 10 );
+}
+
+
+// TIME UP Modal
+// Get the modal
+var timeUpModal = document.getElementById('timeUpModal');
+
+// Get the <span> element that closes the modal
+var timeUpCloseButton = document.getElementsByClassName("close")[1];
+
+// When the user clicks on <span> (x), close the modal
+timeUpCloseButton.onclick = function() {
+    timeUpModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == timeUpModal) {
+        timeUpModal.style.display = "none";
+    }
+}
+
+// If the player cannot complete the game in one hour, "Time Up" modal will be displayed
+function displayTimeUpModal() {
+    timeUpModal.style.display = "block";
+}
+
+timeUpPlayAgainButton.addEventListener('click', playNewGame);

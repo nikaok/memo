@@ -104,11 +104,6 @@ h1 {
     margin-bottom: -5px;
 }
 
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
-}
-
 .checked {
     color: orange;
 }
@@ -118,6 +113,15 @@ h1 {
   display: inline-block;
   margin-left: -35px;
 margin-bottom: -7px;
+}
+
+#minutes {
+    padding-left: 50px;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
 }
 
 li {
@@ -195,7 +199,6 @@ li {
     padding: 2px 10px;
     text-align: center;
     width:50%;
-    /*margin-right: 30px;*/
 }
 
 .modal-list {
@@ -208,6 +211,11 @@ li {
     text-align: left;
 }
 
+.modal-body-timeup {
+    padding: 50px 10px;
+    text-align: center;
+}
+
 .list-item {
     font-weight: bold;
 }
@@ -216,7 +224,7 @@ li {
   text-align: center;
 }
 
-#playAgainButton {
+.playAgainButton {
     -webkit-border-radius: 34;
     -moz-border-radius: 34;
     border-radius: 34px;
