@@ -110,9 +110,9 @@ h1 {
 
 .stars {
   list-style-type: none;
-  display: inline-block;
+  display: inline-flex;
   margin-left: -35px;
-margin-bottom: -7px;
+  margin-bottom: -7px;
 }
 
 #minutes {
@@ -122,10 +122,6 @@ margin-bottom: -7px;
 .score-panel .restart {
     float: right;
     cursor: pointer;
-}
-
-li {
-  float: left;
 }
 
 /*
@@ -198,7 +194,6 @@ li {
 .modal-body {
     padding: 2px 10px;
     text-align: center;
-    width:50%;
 }
 
 .modal-list {
@@ -209,6 +204,8 @@ li {
 #modal-body-list {
     list-style-type: none;
     text-align: left;
+    display: inline-block;
+    margin-left: -40px;
 }
 
 .list-item {
