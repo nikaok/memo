@@ -187,7 +187,7 @@ window.onclick = function(event) {
 
 /* Initiates the timer*/
 function startTimer() {
-  let counter = 359800;
+  let counter = 0;
   let tensVal = 0;
   let secondsVal = 0;
   let minutesVal = 0;
@@ -206,42 +206,8 @@ function startTimer() {
     }
     minutesVal = parseInt (counter / 6000);
 
-    if(minutesVal == 60 && secondsVal == 00 && tensVal == 00) {
-      tens.innerHTML = '00';
-      seconds.innerHTML = '00';
-      minutes.innerHTML = '00';
-      clearInterval(IntervalReturnId);
-      displayTimeUpModal();
-    }
       tens.innerHTML = ('00' + tensVal).slice(-2);
       seconds.innerHTML = ('00' + secondsVal).slice(-2);
       minutes.innerHTML = ('00' + minutesVal).slice(-2);
   }, 10 );
 }
-
-
-// TIME UP Modal
-// Get the modal
-var timeUpModal = document.getElementById('timeUpModal');
-
-// Get the <span> element that closes the modal
-var timeUpCloseButton = document.getElementsByClassName("close")[1];
-
-// When the user clicks on <span> (x), close the modal
-timeUpCloseButton.onclick = function() {
-    timeUpModal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == timeUpModal) {
-        timeUpModal.style.display = "none";
-    }
-}
-
-// If the player cannot complete the game in one hour, "Time Up" modal will be displayed
-function displayTimeUpModal() {
-    timeUpModal.style.display = "block";
-}
-
-timeUpPlayAgainButton.addEventListener('click', playNewGame);
