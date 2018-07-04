@@ -63,6 +63,7 @@ function generateCards(){
     shuffledCards.forEach(function(card){
         deck.innerHTML += `<li class="card" data-card= ${card}><i class="fa ${card}"></i></li>`;
     });
+    deck.addEventListener('click', displayCard);
     deck.addEventListener('click', startTimer, {once: true});
 }
 
@@ -177,6 +178,7 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
+  deck.removeEventListener('click', displayCard);
     modal.style.display = "none";
 }
 
