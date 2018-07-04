@@ -10,11 +10,10 @@ const cards = ["fa-diamond", "fa-diamond",
               "fa-bomb", "fa-bomb"];
 
 const playAgainButton = document.querySelector('.playAgainButton');
-const timeUpPlayAgainButton = document.querySelectorAll('.playAgainButton')[1];
 let openCards = [];
 let moves = document.querySelector('.moves');
 let numOfMoves = parseInt(moves.innerText);    // number of moves made by user
-let counter = 0;   // to track the number of matched items
+let numOfMatchedCards = 0;   // to track the number of matched cards
 
 // stars
 const firstStar = document.getElementById('firstStar');
@@ -27,6 +26,7 @@ const fifthStar = document.getElementById('fifthStar');
 const minutes = document.getElementById('minutes');
 const seconds = document.getElementById('seconds');
 const tens = document.getElementById('tens');
+let IntervalReturnId;
 
 const restartButton = document.querySelector('.restart');
 
@@ -38,7 +38,6 @@ const restartButton = document.querySelector('.restart');
  */
 
 generateCards();
-deck.addEventListener('click', startTimer, {once: true});
 
 // restart the game when user pushes "Play Again" button on the modal
 playAgainButton.addEventListener('click', playNewGame);
@@ -50,6 +49,10 @@ function playNewGame(){
    deck.innerHTML = "";
    numOfMoves = 0;
    moves.innerText = numOfMoves;
+   numOfMatchedCards = 0; // reset the number of matched cards
+   tens.innerHTML = '00';
+   seconds.innerHTML = '00';
+   minutes.innerHTML = '00';
    modal.style.display = 'none';
    generateCards();
 }
@@ -60,6 +63,7 @@ function generateCards(){
     shuffledCards.forEach(function(card){
         deck.innerHTML += `<li class="card" data-card= ${card}><i class="fa ${card}"></i></li>`;
     });
+    deck.addEventListener('click', startTimer, {once: true});
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -100,10 +104,10 @@ function displayCard(event) {
       openCards[0].classList.add('match', 'rotate-center');
       openCards[1].classList.add('match', 'rotate-center');
       openCards = [];
-      counter++;
+      numOfMatchedCards++;
 
       // show the congratulations message to the user
-      if(counter === 1) {
+      if(numOfMatchedCards === 1) {
           displayFinalScore(getNumOfMoves());
       }
     }
@@ -158,7 +162,8 @@ function updateStarRating() {
 function displayFinalScore() {
     modal.style.display = "block";
     document.getElementById('list-moves').innerText = numOfMoves;
-    document.getElementById('list-time').innerText = "simdilik TIME yok";
+    clearInterval(IntervalReturnId);
+    document.getElementById('list-time').innerHTML = `${minutes.innerHTML}:${seconds.innerHTML}:${tens.innerHTML}`;
     document.getElementById('list-star').innerHTML = document.querySelector('.stars').outerHTML;
 }
 
@@ -195,7 +200,7 @@ function startTimer() {
   IntervalReturnId is the ID returned by setInterval method.
   ID will be used as parameter to clearInterval method to stop the timer
   */
-  let IntervalReturnId = setInterval(function() {
+  IntervalReturnId = setInterval(function() {
     counter++;
 
     tensVal = counter % 100;
