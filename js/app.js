@@ -128,7 +128,7 @@ function displayCard(event) {
     updateStarRating();
 
     // if the user wins, show the final score modal to the user
-    if(numOfMatchedCards === 1) {
+    if(numOfMatchedCards === 8) {
         displayFinalScore();
     }
   }
@@ -183,6 +183,7 @@ span.onclick = function() {
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        deck.removeEventListener('click', displayCard);
     }
 }
 
