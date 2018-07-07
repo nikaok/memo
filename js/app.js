@@ -102,15 +102,11 @@ function displayCard(event) {
   }
   if (openCards.length == 2) {
     if(openCards[0].dataset.card === openCards[1].dataset.card) {
+
       openCards[0].classList.add('match', 'rotate-center');
       openCards[1].classList.add('match', 'rotate-center');
       openCards = [];
       numOfMatchedCards++;
-
-      // show the congratulations message to the user
-      if(numOfMatchedCards === 1) {
-          displayFinalScore(getNumOfMoves());
-      }
     }
     else {
 
@@ -129,6 +125,11 @@ function displayCard(event) {
     }
     updateMoves();
     updateStarRating();
+
+    // if the user wins, show the final score modal to the user
+    if(numOfMatchedCards === 1) {
+        displayFinalScore();
+    }
   }
 }
 
@@ -136,11 +137,6 @@ function displayCard(event) {
 function updateMoves() {
   numOfMoves++;
   moves.innerText = numOfMoves;
-  return numOfMoves;
-}
-
-function getNumOfMoves() {
-  return updateMoves();
 }
 
 // Update how many stars the user have
@@ -198,6 +194,7 @@ function startTimer() {
   let tensVal = 0;
   let secondsVal = 0;
   let minutesVal = 0;
+
   /*
   IntervalReturnId is the ID returned by setInterval method.
   ID will be used as parameter to clearInterval method to stop the timer
