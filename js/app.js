@@ -53,6 +53,7 @@ function playNewGame(){
    tens.innerHTML = '00';
    seconds.innerHTML = '00';
    minutes.innerHTML = '00';
+   clearInterval(IntervalReturnId);
    modal.style.display = 'none';
    generateCards();
 }
