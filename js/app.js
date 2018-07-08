@@ -46,27 +46,27 @@ playAgainButton.addEventListener('click', playNewGame);
 restartButton.addEventListener('click', playNewGame);
 
 function playNewGame() {
-   deck.innerHTML = "";
-   numOfMoves = 0;
-   moves.innerText = numOfMoves;
-   numOfMatchedCards = 0; // reset the number of matched cards
+    deck.innerHTML = "";
+    numOfMoves = 0;
+    moves.innerText = numOfMoves;
+    numOfMatchedCards = 0; // reset the number of matched cards
 
-   //reset timer
-   tens.innerHTML = '00';
-   seconds.innerHTML = '00';
-   minutes.innerHTML = '00';
-   clearInterval(IntervalReturnId);
+    //reset timer
+    tens.innerHTML = '00';
+    seconds.innerHTML = '00';
+    minutes.innerHTML = '00';
+    clearInterval(IntervalReturnId);
 
-  // reset stars
-  firstStar.classList.add('checked');
-  secondStar.classList.add('checked');
-  thirdStar.classList.add('checked');
-  fourthStar.classList.add('checked');
-  fifthStar.classList.add('checked');
+    // reset stars
+    firstStar.classList.add('checked');
+    secondStar.classList.add('checked');
+    thirdStar.classList.add('checked');
+    fourthStar.classList.add('checked');
+    fifthStar.classList.add('checked');
 
-   modal.style.display = 'none';
+    modal.style.display = 'none';
 
-   generateCards();
+    generateCards();
 }
 
 // Display the shuffled cards on the screen
@@ -119,26 +119,26 @@ function displayCard(event) {
             if (openCards.length === 2) {
 
                 if(openCards[0].dataset.card === openCards[1].dataset.card) {
-                  openCards[0].classList.add('match', 'rotate-center');
-                  openCards[1].classList.add('match', 'rotate-center');
-                  openCards = [];
-                  numOfMatchedCards++;
+                    openCards[0].classList.add('match', 'rotate-center');
+                    openCards[1].classList.add('match', 'rotate-center');
+                    openCards = [];
+                    numOfMatchedCards++;
                 }
 
                 else {
-                  setTimeout(function() {
-                  openCards[0].classList.add('flip-vertical-right');
-                  openCards[1].classList.add('flip-vertical-right');
-                }
-                 ,1000);
+                    setTimeout(function() {
+                        openCards[0].classList.add('flip-vertical-right');
+                        openCards[1].classList.add('flip-vertical-right');
+                    }
+                    ,1000);
 
                 setTimeout(function() {
-                  openCards[0].classList.remove('open', 'show', 'flip-vertical-right');
-                  openCards[1].classList.remove('open', 'show', 'flip-vertical-right');
-                  openCards = [];
+                    openCards[0].classList.remove('open', 'show', 'flip-vertical-right');
+                    openCards[1].classList.remove('open', 'show', 'flip-vertical-right');
+                    openCards = [];
+                  }
+                  ,1300);
                 }
-                 ,1300);
-               }
 
               updateMoves();
               updateStarRating();
@@ -153,8 +153,8 @@ function displayCard(event) {
 
 // Update the number of moves
 function updateMoves() {
-  numOfMoves++;
-  moves.innerText = numOfMoves;
+    numOfMoves++;
+    moves.innerText = numOfMoves;
 }
 
 // Update how many stars the user have
@@ -192,8 +192,8 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  deck.removeEventListener('click', displayCard);
-    modal.style.display = "none";
+    deck.removeEventListener('click', displayCard);
+      modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -209,28 +209,29 @@ window.onclick = function(event) {
 
 /* Initiates the timer*/
 function startTimer() {
-  let counter = 0;
-  let tensVal = 0;
-  let secondsVal = 0;
-  let minutesVal = 0;
+    let counter = 0;
+    let tensVal = 0;
+    let secondsVal = 0;
+    let minutesVal = 0;
 
-  /*
-  IntervalReturnId is the ID returned by setInterval method.
-  ID will be used as parameter to clearInterval method to stop the timer
-  */
-  IntervalReturnId = setInterval(function() {
-    counter++;
+    /*
+    IntervalReturnId is the ID returned by setInterval method.
+    ID will be used as parameter to clearInterval method to stop the timer
+    */
+    IntervalReturnId = setInterval(function() {
+        counter++;
 
-    tensVal = counter % 100;
-    secondsVal = parseInt(counter / 100);
+        tensVal = counter % 100;
+        secondsVal = parseInt(counter / 100);
 
-    if(secondsVal > 59) {
-      secondsVal = secondsVal % 60;
+        if(secondsVal > 59) {
+            secondsVal = secondsVal % 60;
+        }
+        minutesVal = parseInt (counter / 6000);
+
+            tens.innerHTML = ('00' + tensVal).slice(-2);
+            seconds.innerHTML = ('00' + secondsVal).slice(-2);
+            minutes.innerHTML = ('00' + minutesVal).slice(-2);
     }
-    minutesVal = parseInt (counter / 6000);
-
-      tens.innerHTML = ('00' + tensVal).slice(-2);
-      seconds.innerHTML = ('00' + secondsVal).slice(-2);
-      minutes.innerHTML = ('00' + minutesVal).slice(-2);
-  }, 10 );
+    ,10 );
 }
