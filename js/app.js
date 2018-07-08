@@ -97,41 +97,47 @@ function shuffle(array) {
 deck.addEventListener('click', displayCard);
 
 function displayCard(event) {
-  if(openCards.length < 2) {
-    event.target.classList.add('open', 'show');
-    openCards.push(event.target);
-  }
-  if (openCards.length == 2) {
-    if(openCards[0].dataset.card === openCards[1].dataset.card) {
+    if(openCards.length < 2 &&
+        !event.target.classList.contains('open') &&
+        !event.target.classList.contains('fa') &&
+        event.target.classList.contains('card'))
+        {
+            event.target.classList.add('open', 'show');
+            openCards.push(event.target);
 
-      openCards[0].classList.add('match', 'rotate-center');
-      openCards[1].classList.add('match', 'rotate-center');
-      openCards = [];
-      numOfMatchedCards++;
-    }
-    else {
+            if (openCards.length === 2) {
 
-      setTimeout(function(){
-        openCards[0].classList.add('flip-vertical-right');
-        openCards[1].classList.add('flip-vertical-right');
-      }
-       ,1000);
+                if(openCards[0].dataset.card === openCards[1].dataset.card) {
+                  openCards[0].classList.add('match', 'rotate-center');
+                  openCards[1].classList.add('match', 'rotate-center');
+                  openCards = [];
+                  numOfMatchedCards++;
+                }
 
-      setTimeout(function(){
-        openCards[0].classList.remove('open', 'show', 'flip-vertical-right');
-        openCards[1].classList.remove('open', 'show', 'flip-vertical-right');
-        openCards = [];
-      }
-       ,1300);
-    }
-    updateMoves();
-    updateStarRating();
+                else {
+                  setTimeout(function() {
+                  openCards[0].classList.add('flip-vertical-right');
+                  openCards[1].classList.add('flip-vertical-right');
+                }
+                 ,1000);
 
-    // if the user wins, show the final score modal to the user
-    if(numOfMatchedCards === 8) {
-        displayFinalScore();
-    }
-  }
+                setTimeout(function() {
+                  openCards[0].classList.remove('open', 'show', 'flip-vertical-right');
+                  openCards[1].classList.remove('open', 'show', 'flip-vertical-right');
+                  openCards = [];
+                }
+                 ,1300);
+               }
+
+              updateMoves();
+              updateStarRating();
+
+              // if the user wins, show the final score modal to the user
+              if(numOfMatchedCards === 8) {
+                  displayFinalScore();
+              }
+            }
+        }
 }
 
 // Update the number of moves
