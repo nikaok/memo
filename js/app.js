@@ -45,16 +45,27 @@ playAgainButton.addEventListener('click', playNewGame);
 // Restart the game when the user pushes the refresh button on the screen
 restartButton.addEventListener('click', playNewGame);
 
-function playNewGame(){
+function playNewGame() {
    deck.innerHTML = "";
    numOfMoves = 0;
    moves.innerText = numOfMoves;
    numOfMatchedCards = 0; // reset the number of matched cards
+
+   //reset timer
    tens.innerHTML = '00';
    seconds.innerHTML = '00';
    minutes.innerHTML = '00';
    clearInterval(IntervalReturnId);
+
+  // reset stars
+  firstStar.classList.add('checked');
+  secondStar.classList.add('checked');
+  thirdStar.classList.add('checked');
+  fourthStar.classList.add('checked');
+  fifthStar.classList.add('checked');
+
    modal.style.display = 'none';
+
    generateCards();
 }
 
