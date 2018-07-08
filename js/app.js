@@ -50,7 +50,7 @@ function playNewGame() {
     numOfMoves = 0;
     moves.innerText = numOfMoves;
     numOfMatchedCards = 0; // reset the number of matched cards
-
+    openCards = [];
     //reset timer
     tens.innerHTML = '00';
     seconds.innerHTML = '00';
