@@ -1,13 +1,7 @@
 // Create a list that holds all of the cards
 let deck = document.querySelector('.deck');
-const cards = ["fa-diamond", "fa-diamond",
-              "fa-paper-plane-o", "fa-paper-plane-o",
-              "fa-anchor", "fa-anchor",
-              "fa-bolt", "fa-bolt",
-              "fa-cube", "fa-cube",
-              "fa-leaf", "fa-leaf",
-              "fa-bicycle", "fa-bicycle",
-              "fa-bomb", "fa-bomb"];
+const cards = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bicycle", "fa-bomb"];
+cards = cards.concat(cards);
 
 const playAgainButton = document.querySelector('.playAgainButton');
 let openCards = [];
